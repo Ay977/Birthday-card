@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎂</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3eadf;
+    overflow-x: hidden;
+}
+
+.page {
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.page.active {
+    display: flex;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    background: #fffdf8;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+h1 {
+    font-size: 38px;
+    margin: 10px 0 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 14px 25px;
+    font-size: 17px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    margin-top: 15px;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.photo {
+    width: 100%;
+    border-radius: 15px;
+    margin: 15px 0;
+}
+
+.small {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Cake */
+.cake {
+    position: relative;
+    width: 280px;
+    height: 190px;
+    margin: 20px auto;
+}
+
+.cake-body {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 240px;
+    height: 110px;
+    background: #e7d5ae;
+    border: 5px solid #222;
+    border-radius: 20px;
+}
+
+.candle {
+    position: absolute;
+    bottom: 105px;
+    width: 18px;
+    height: 65px;
+    background: #fff;
+    border: 3px solid #222;
+    border-radius: 8px;
+}
+
+.candle:nth-child(1) { left: 45px; }
+.candle:nth-child(2) { left: 92px; }
+.candle:nth-child(3) { left: 139px; }
+.candle:nth-child(4) { left: 186px; }
+
+.flame {
+    position: absolute;
+    top: -30px;
+    left: 2px;
+    width: 10px;
+    height: 22px;
+    background: orange;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    animation: flicker 0.5s infinite alternate;
+}
+
+.flame.off {
+    display: none;
+}
+
+@keyframes flicker {
+    from {
+        transform: rotate(-45deg) scale(1);
+    }
+    to {
+        transform: rotate(-45deg) scale(0.8);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.gallery img {
+    display: block;
+}
+
+.next {
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+    <div class="card">
+        <h1>🎂 Happy Birthday!</h1>
+
+        <img src="1.png" class="photo">
+
+        <p>
+            A little birthday surprise just for you 💌
+        </p>
+
+        <button onclick="nextPage(2)">
+            Open your birthday card 💗
+        </button>
+    </div>
+</section>
+
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+    <div class="card">
+        <img src="2.png" class="photo">
+
+        <button onclick="nextPage(3)">
+            Continue ✨
+        </button>
+    </div>
+</section>
+
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+    <div class="card">
+
+        <h1>🎂</h1>
+
+        <div class="cake">
+
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+
+            <div class="cake-body"></div>
+
+        </div>
+
+        <h2>Make a wish! ✨</h2>
+
+        <p>
+            Blow out the candles 🕯️
+        </p>
+
+        <button onclick="blowCandles()">
+            💨 Blow out the candles
+        </button>
+
+        <p id="songText" class="hidden">
+            🎵 Happy Birthday! 🎵
+        </p>
+
+        <button id="continueButton"
+                class="hidden"
+                onclick="nextPage(4)">
+            Continue 💌
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+    <div class="card">
+
+        <img src="3.png" class="photo">
+
+        <p>
+            May our friendship grow with time,
+            not fade with distance ✨
+        </p>
+
+        <button onclick="nextPage(5)">
+            One more thing... 💗
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+    <div class="card">
+
+        <img src="4.png" class="photo">
+
+        <h1>💗</h1>
+
+        <p>
+            Happy Birthday! 🎉
+        </p>
+
+        <p class="small">
+            Thank you for being part of my life.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- Birthday song -->
+<audio id="birthdaySong" preload="auto">
+    <source src="Happy Birthday Song Card.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+
+function nextPage(number) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + number).classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function blowCandles() {
+
+    // Turn off all candle flames
+    document.querySelectorAll(".flame").forEach(flame => {
+        flame.classList.add("off");
+    });
+
+    // Play birthday song
+    const song = document.getElementById("birthdaySong");
+
+    song.currentTime = 0;
+
+    song.play().catch(error => {
+        console.log("Audio could not start:", error);
+    });
+
+    // Show message
+    document.getElementById("songText")
+        .classList.remove("hidden");
+
+    document.getElementById("continueButton")
+        .classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
